@@ -1,33 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+:root,
+body {
+	--foreground-rgb: 0, 0, 0;
+	--mainColor: #000000;
+	--secondColor: #ffffff;
+	--index: calc(1vw + 1vh);
+}
+
+.montserrat-all {
+	font-family: 'Montserrat', sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 700;
+	font-style: normal;
+}
+.montserrat-medium {
+	font-family: 'Montserrat', sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 500;
+	font-style: normal;
+}
+
+.darkTheme {
+	background-color: #1d1e42;
+	color: #ffffff;
+}
+.darkTheme::placeholder {
+	background-color: #1d1e42;
+	color: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+	:root {
+		--foreground-rgb: 255, 255, 255;
+		--background-start-rgb: 0, 0, 0;
+		--background-end-rgb: 0, 0, 0;
+	}
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.flexBox {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.active {
+	background-color: #624de3;
+	color: #ffffff;
+}
+
+#btnTheme {
+	appearance: none;
+	position: relative;
+	top: 1vh;
+	left: 8.5vw;
+	display: inline-block;
+	width: calc(var(--index) * 2.5);
+	height: calc(var(--index) * 1.33);
+	vertical-align: top;
+	background: #624de3;
+	box-shadow: inset 3px 3px 3px black;
+	border: 1px solid #bbc1e1;
+	border-radius: 30px;
+	outline: none;
+	cursor: pointer;
+}
+#btnTheme::after {
+	content: '';
+	display: inline-block;
+	position: absolute;
+	width: calc(var(--index) * 1.2);
+	height: calc(var(--index) * 1.2);
+	background-image: url(/sun.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: #624de3;
+	box-shadow: 3px 3px 7px 3px black;
+	border-radius: 50%;
+	transform: translateX(2px);
+	transition: 1s;
+}
+#btnTheme:checked::after {
+	transform: translateX(calc(100% + 1px));
+	background-image: url(/moon.jpg);
+	background-color: #624de3;
+	box-shadow: 3px 3px 7px 3px black;
 }
